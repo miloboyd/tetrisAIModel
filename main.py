@@ -22,7 +22,17 @@ game = Game()
 GAME_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(GAME_UPDATE, 1000)
 
+last_time = pygame.time.get_ticks()
+
 while True:
+
+	current_time = pygame.time.get_ticks()
+	delta_time = current_time - last_time
+	last_time = current_time
+
+	if game.game_over == False:
+		game.update(delta_time)
+
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit()
@@ -38,6 +48,8 @@ while True:
 			if event.key == pygame.K_DOWN and game.game_over == False:
 				game.move_down()
 				game.update_score(0, 1)
+			if event.key == pygame.K_UP and game.game_over == False:
+				game.hard_drop()
 			'''	
 			if event.key == pygame.K_UP and game.game_over == False:
 				game.rotate()
