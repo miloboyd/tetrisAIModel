@@ -20,7 +20,7 @@ clock = pygame.time.Clock()
 game = Game()
 
 GAME_UPDATE = pygame.USEREVENT
-pygame.time.set_timer(GAME_UPDATE, 200)
+pygame.time.set_timer(GAME_UPDATE, 1000)
 
 while True:
 	for event in pygame.event.get():
@@ -38,8 +38,14 @@ while True:
 			if event.key == pygame.K_DOWN and game.game_over == False:
 				game.move_down()
 				game.update_score(0, 1)
+			'''	
 			if event.key == pygame.K_UP and game.game_over == False:
 				game.rotate()
+			'''
+			if event.key == pygame.K_PAGEUP and game.game_over == False:
+				game.rotate_counterclockwise()
+			if event.key == pygame.K_PAGEDOWN and game.game_over == False:
+				game.rotate_clockwise()
 		if event.type == GAME_UPDATE and game.game_over == False:
 			game.move_down()
 

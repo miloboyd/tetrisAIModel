@@ -70,10 +70,21 @@ class Game:
 				return False
 		return True
 
+	'''
 	def rotate(self):
 		self.current_block.rotate()
 		if self.block_inside() == False or self.block_fits() == False:
 			self.current_block.undo_rotation()
+	'''
+	def rotate_clockwise(self):
+		self.current_block.rotate_clockwise()
+		if self.block_inside() == False or self.block_fits() == False:
+			self.current_block.rotate_counterclockwise()
+	
+	def rotate_counterclockwise(self):
+		self.current_block.rotate_counterclockwise()
+		if self.block_inside() == False or self.block_fits() == False:
+			self.current_block.rotate_clockwise()
 
 	def block_inside(self):
 		tiles = self.current_block.get_cell_positions()
